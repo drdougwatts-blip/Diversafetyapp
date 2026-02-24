@@ -1,0 +1,43 @@
+{
+  "expo": {
+    "name": "UK Diver Safety Toolkit",
+    "slug": "uk-diver-safety-toolkit",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0C2340"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "org.ddrc.diversafetytoolkit",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "We need your location to find the nearest hyperbaric chamber in an emergency."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0C2340"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "org.ddrc.diversafetytoolkit",
+      "permissions": ["ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION"]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "We need your location to find the nearest hyperbaric chamber in an emergency."
+        }
+      ]
+    ]
+  }
+}

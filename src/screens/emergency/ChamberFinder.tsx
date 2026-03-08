@@ -16,6 +16,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { EmergencyStackParamList } from './EmergencyStack';
 import { Colors, FontSizes, Spacing, BorderRadius, MinTapTarget } from '../../constants/theme';
 import { API_ENDPOINTS } from '../../constants/api';
+import { findNearestChambers } from '../../data/chambers';
 import { useNetworkStatus } from '../../hooks/useNetworkStatus';
 import { StatusBadge } from '../../components/StatusBadge';
 import { CallButton } from '../../components/CallButton';
@@ -41,17 +42,24 @@ export function ChamberFinder({ route }: Props) {
     setLoading(true);
     setSearched(true);
     try {
+      // Try the remote API first
       const url = `${API_ENDPOINTS.chamberFinder}?postcode=${encodeURIComponent(pc.trim())}&criticalCare=${criticalCareOnly}`;
       const response = await fetch(url);
       if (!response.ok) throw new Error('API error');
       const data = await response.json();
       setChambers(data.chambers || []);
     } catch {
-      Alert.alert(
-        'Search Failed',
-        'Unable to find chambers. In an emergency, call 999 and ask for Coastguard, or call DDRC on +44 (0)1752 209999.'
-      );
-      setChambers([]);
+      // Fall back to built-in chamber data
+      const localResult = findNearestChambers(pc.trim(), criticalCareOnly);
+      if (localResult && localResult.chambers.length > 0) {
+        setChambers(localResult.chambers);
+      } else {
+        Alert.alert(
+          'Search Failed',
+          'Unable to find chambers. In an emergency, call 999 and ask for Coastguard, or call DDRC on +44 (0)1752 209999.'
+        );
+        setChambers([]);
+      }
     } finally {
       setLoading(false);
     }

@@ -1,5 +1,4 @@
-// Replace with actual Cloud Run URL when deployed
-export const API_BASE_URL = 'https://hbot-spoc-api.example.com';
+export const API_BASE_URL = 'https://hbot-spoc-869020288631.europe-west2.run.app';
 
 export const API_ENDPOINTS = {
   chamberFinder: `${API_BASE_URL}/api/find`,

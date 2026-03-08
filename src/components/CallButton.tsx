@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, Linking, Alert } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, Linking, Alert, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, FontSizes, Spacing, BorderRadius, MinTapTarget } from '../constants/theme';
 
@@ -18,6 +18,11 @@ export function CallButton({
 }: CallButtonProps) {
   const handlePress = async () => {
     const url = `tel:${phoneNumber}`;
+    if (Platform.OS === 'web') {
+      // tel: links work in most mobile browsers; on desktop show the number
+      window.open(url, '_self');
+      return;
+    }
     const canOpen = await Linking.canOpenURL(url);
     if (canOpen) {
       Linking.openURL(url);

@@ -11,7 +11,6 @@ import {
   Linking,
   Platform,
 } from 'react-native';
-import * as Location from 'expo-location';
 import { Ionicons } from '@expo/vector-icons';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { EmergencyStackParamList } from './EmergencyStack';
@@ -58,9 +57,50 @@ export function ChamberFinder({ route }: Props) {
     }
   };
 
+  const reverseGeocodeWeb = async (lat: number, lon: number): Promise<string | null> => {
+    try {
+      const res = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&addressdetails=1`,
+        { headers: { 'User-Agent': 'DiversafetyApp/1.0' } }
+      );
+      const data = await res.json();
+      return data?.address?.postcode ?? null;
+    } catch {
+      return null;
+    }
+  };
+
   const useMyLocation = async () => {
     setLoading(true);
     try {
+      if (Platform.OS === 'web') {
+        // Use browser Geolocation API on web
+        if (!navigator.geolocation) {
+          Alert.alert('Location Error', 'Geolocation is not supported by your browser.');
+          setLoading(false);
+          return;
+        }
+        navigator.geolocation.getCurrentPosition(
+          async (position) => {
+            const pc = await reverseGeocodeWeb(position.coords.latitude, position.coords.longitude);
+            if (pc) {
+              setPostcode(pc);
+              await searchByPostcode(pc);
+            } else {
+              Alert.alert('Location Error', 'Unable to determine your postcode. Please enter it manually.');
+              setLoading(false);
+            }
+          },
+          () => {
+            Alert.alert('Location Permission', 'Please enable location access to use this feature, or enter a postcode manually.');
+            setLoading(false);
+          }
+        );
+        return;
+      }
+
+      // Native: use expo-location
+      const Location = await import('expo-location');
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
         Alert.alert(

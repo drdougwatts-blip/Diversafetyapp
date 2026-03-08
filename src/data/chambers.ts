@@ -36,22 +36,6 @@ export const UK_CHAMBERS: ChamberRecord[] = [
     longitude: -1.2616,
   },
   {
-    name: 'HMS Nelson Hyperbaric Unit',
-    location: 'Portsmouth, Hampshire',
-    phone: '+442392722351',
-    status: 'Fully operational',
-    latitude: 50.8008,
-    longitude: -1.1018,
-  },
-  {
-    name: 'James Cook University Hospital',
-    location: 'Middlesbrough, North Yorkshire',
-    phone: '+441642850850',
-    status: 'Fully operational',
-    latitude: 54.5510,
-    longitude: -1.2110,
-  },
-  {
     name: 'Aberdeen Royal Infirmary',
     location: 'Aberdeen, Scotland',
     phone: '+441224681818',
@@ -76,14 +60,6 @@ export const UK_CHAMBERS: ChamberRecord[] = [
     longitude: -0.3373,
   },
   {
-    name: 'Oban Hyperbaric Chamber',
-    location: 'Oban, Scotland',
-    phone: '+441631559000',
-    status: 'No critical care',
-    latitude: 56.4120,
-    longitude: -5.4780,
-  },
-  {
     name: 'Orkney Hyperbaric Unit',
     location: 'Kirkwall, Orkney',
     phone: '+441856888000',
@@ -100,12 +76,12 @@ export const UK_CHAMBERS: ChamberRecord[] = [
     longitude: -0.7790,
   },
   {
-    name: 'Great Western Hospital',
-    location: 'Swindon, Wiltshire',
-    phone: '+441793604020',
-    status: 'No critical care',
-    latitude: 51.5440,
-    longitude: -1.7530,
+    name: 'Great Yarmouth & Waveney Hyperbaric Unit',
+    location: 'Great Yarmouth, Norfolk',
+    phone: '+441493452452',
+    status: 'Fully operational',
+    latitude: 52.5741,
+    longitude: 1.7218,
   },
 ];
 

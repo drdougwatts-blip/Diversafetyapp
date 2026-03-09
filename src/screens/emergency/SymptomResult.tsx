@@ -109,8 +109,8 @@ export function SymptomResult({ route, navigation: nav }: Props) {
         {hasNeurological ? (
           <View style={styles.callActions}>
             <CallButton
-              label="CALL DDRC NOW"
-              phoneNumber="+441752209999"
+              label="CALL BHA HELPLINE NOW"
+              phoneNumber="+447831151523"
               color={Colors.emergencyRed}
             />
             <CallButton
@@ -129,8 +129,8 @@ export function SymptomResult({ route, navigation: nav }: Props) {
         ) : (
           <View style={styles.callActions}>
             <CallButton
-              label="CALL DDRC FOR ADVICE"
-              phoneNumber="+441752209999"
+              label="CALL BHA HELPLINE FOR ADVICE"
+              phoneNumber="+447831151523"
               color={Colors.amber}
             />
             <TouchableOpacity

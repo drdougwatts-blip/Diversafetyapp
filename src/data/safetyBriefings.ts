@@ -36,27 +36,23 @@ export const safetyBriefings: SafetyBriefing[] = [
   },
   {
     id: 7,
-    text: 'Never attempt in-water recompression. It is extremely dangerous and can worsen the situation.',
-  },
-  {
-    id: 8,
     text: 'Peer pressure is a recurring factor in BSAC incident reports. Always feel empowered to call a dive.',
   },
   {
-    id: 9,
-    text: 'Even mild symptoms after diving warrant medical advice. Call DDRC — the duty doctor would rather take a precautionary call.',
+    id: 8,
+    text: 'Even mild symptoms after diving warrant medical advice. Call the BHA helpline — the duty doctor would rather take a precautionary call.',
     learnMoreUrl: 'https://www.ddrc.org/diving/diving-emergency/',
   },
   {
-    id: 10,
+    id: 9,
     text: 'Dehydration increases your risk of DCI. Drink plenty of water before and after diving.',
   },
   {
-    id: 11,
+    id: 10,
     text: 'Alcohol within 12 hours of diving significantly increases your risk. Stay hydrated with water instead.',
   },
   {
-    id: 12,
+    id: 11,
     text: 'A Patent Foramen Ovale (PFO) is present in about 25% of the population and can increase DCI risk.',
     learnMoreUrl: 'https://www.ddrc.org/diving/fitness-to-dive/pfo/',
   },

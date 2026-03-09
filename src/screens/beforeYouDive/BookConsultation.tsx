@@ -63,7 +63,7 @@ export function BookConsultation() {
         <View style={styles.contactSection}>
           <Text style={styles.contactTitle}>Have questions?</Text>
           <CallButton
-            label="Call DDRC: +44 (0)1752 209999"
+            label="Call DDRC: 01752 209999"
             phoneNumber="+441752209999"
             color={Colors.teal}
             variant="secondary"

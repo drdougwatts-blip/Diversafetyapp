@@ -56,7 +56,7 @@ export function ChamberFinder({ route }: Props) {
       } else {
         Alert.alert(
           'Search Failed',
-          'Unable to find chambers. In an emergency, call 999 and ask for Coastguard, or call DDRC on +44 (0)1752 209999.'
+          'Unable to find chambers. In an emergency, call 999 and ask for Coastguard, or call the BHA helpline on 07831 151 523.'
         );
         setChambers([]);
       }
@@ -162,8 +162,8 @@ export function ChamberFinder({ route }: Props) {
             color={Colors.emergencyRed}
           />
           <CallButton
-            label="Call DDRC: +44 (0)1752 209999"
-            phoneNumber="+441752209999"
+            label="BHA Helpline: 07831 151 523"
+            phoneNumber="+447831151523"
             color={Colors.primaryNavy}
           />
         </View>
@@ -225,7 +225,7 @@ export function ChamberFinder({ route }: Props) {
         {!loading && searched && chambers.length === 0 && (
           <View style={styles.noResults}>
             <Text style={styles.noResultsText}>
-              No chambers found. In an emergency, call DDRC on +44 (0)1752 209999.
+              No chambers found. In an emergency, call the BHA helpline on 07831 151 523.
             </Text>
           </View>
         )}

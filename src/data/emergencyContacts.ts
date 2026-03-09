@@ -16,11 +16,11 @@ export const emergencyContacts: EmergencyContact[] = [
     isPrimary: true,
   },
   {
-    name: 'DDRC 24hr Diving Emergency Hotline',
-    number: '+44 (0)1752 209999',
+    name: 'BHA Diving Accident Helpline (24hr)',
+    number: '07831 151 523',
     description:
-      'DDRC Healthcare operates a 24/7 emergency hotline for diving emergencies. Call for expert advice on any suspected decompression illness.',
-    dialNumber: '+441752209999',
+      'The BHA National Diving Accident Helpline provides 24/7 expert advice on any suspected decompression illness.',
+    dialNumber: '+447831151523',
     isPrimary: true,
   },
   {

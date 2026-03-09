@@ -90,7 +90,7 @@ export function EmergencyHome() {
             DDRC Healthcare — Charity No. 279652
           </Text>
           <Text style={styles.footerText}>
-            24hr Diving Emergency: +44 (0)1752 209999
+            24hr BHA Diving Accident Helpline: 07831 151 523
           </Text>
         </View>
       </ScrollView>

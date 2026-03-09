@@ -37,7 +37,7 @@ export function FirstAidGuidance() {
         <Step number={1} text="Ensure your own safety first" />
         <Step
           number={2}
-          text="Call for help — Coastguard 999 / DDRC Hotline"
+          text="Call for help — Coastguard 999 / BHA Helpline"
         />
 
         <View style={styles.callButtons}>
@@ -47,8 +47,8 @@ export function FirstAidGuidance() {
             color={Colors.emergencyRed}
           />
           <CallButton
-            label="DDRC Hotline: +44 (0)1752 209999"
-            phoneNumber="+441752209999"
+            label="BHA Helpline: 07831 151 523"
+            phoneNumber="+447831151523"
             color={Colors.primaryNavy}
           />
         </View>
@@ -113,8 +113,8 @@ export function FirstAidGuidance() {
           <View style={styles.noteRow}>
             <Ionicons name="alert-circle" size={18} color={Colors.amber} />
             <Text style={styles.noteText}>
-              If in doubt, call DDRC — the duty doctor would rather take a
-              precautionary call than miss a case
+              If in doubt, call the BHA helpline — the duty doctor would rather
+              take a precautionary call than miss a case
             </Text>
           </View>
         </View>

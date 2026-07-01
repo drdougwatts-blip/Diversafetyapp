@@ -72,20 +72,15 @@ export function FirstAidGuidance() {
         />
         <Step
           number={8}
-          text="Do NOT recompress in water — this is extremely dangerous"
-          isWarning
-        />
-        <Step
-          number={9}
           text="Do NOT give aspirin or other painkillers (may mask symptoms)"
           isWarning
         />
         <Step
-          number={10}
+          number={9}
           text="Record the time symptoms started, dive profile details, and any changes"
         />
         <Step
-          number={11}
+          number={10}
           text="Keep all diving equipment — it may be needed for investigation"
         />
 

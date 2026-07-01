@@ -73,7 +73,7 @@ export function SymptomResult({ route, navigation: nav }: Props) {
 
     text += `\nNeurological symptoms present: ${hasNeurological ? 'YES' : 'No'}\n`;
     text += '\n--- FIRST AID REMINDERS ---\n';
-    text += '- Lie flat\n- Give high-flow oxygen (100%) if available\n- Give fluids (water)\n- Do NOT recompress in water\n- Monitor and reassess\n';
+    text += '- Lie flat\n- Give high-flow oxygen (100%) if available\n- Give fluids (water)\n- Monitor and reassess\n';
 
     return text;
   };
@@ -192,9 +192,6 @@ export function SymptomResult({ route, navigation: nav }: Props) {
             {'\u2022'} Give high-flow oxygen (100%) if available
           </Text>
           <Text style={styles.firstAidItem}>{'\u2022'} Give fluids (water)</Text>
-          <Text style={styles.firstAidItem}>
-            {'\u2022'} Do NOT recompress in water
-          </Text>
           <Text style={styles.firstAidItem}>
             {'\u2022'} Monitor and reassess
           </Text>

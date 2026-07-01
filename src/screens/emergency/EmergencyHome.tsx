@@ -38,8 +38,11 @@ export function EmergencyHome() {
   const navigation = useNavigation<NavigationProp>();
   const isConnected = useNetworkStatus();
 
-  // Pick a random safety briefing
-  const briefing = safetyBriefings[Math.floor(Math.random() * safetyBriefings.length)];
+  // Pick a random safety briefing once per mount so it doesn't
+  // change under the user on unrelated re-renders
+  const [briefing] = React.useState(
+    () => safetyBriefings[Math.floor(Math.random() * safetyBriefings.length)]
+  );
 
   return (
     <View style={styles.container}>

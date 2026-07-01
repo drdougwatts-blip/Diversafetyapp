@@ -42,9 +42,14 @@ export function ChamberFinder({ route }: Props) {
     setLoading(true);
     setSearched(true);
     try {
-      // Try the remote API first
+      if (!isConnected) throw new Error('offline');
+      // Try the remote API first, but cap the wait so a slow response
+      // never delays emergency results — local data is the fallback
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
       const url = `${API_ENDPOINTS.chamberFinder}?postcode=${encodeURIComponent(pc.trim())}&criticalCare=${criticalCareOnly}`;
-      const response = await fetch(url);
+      const response = await fetch(url, { signal: controller.signal });
+      clearTimeout(timeoutId);
       if (!response.ok) throw new Error('API error');
       const data = await response.json();
       setChambers(data.chambers || []);
@@ -79,6 +84,13 @@ export function ChamberFinder({ route }: Props) {
   };
 
   const useMyLocation = async () => {
+    if (!isConnected) {
+      Alert.alert(
+        'Offline',
+        'Location lookup needs an internet connection. Please enter your postcode manually.'
+      );
+      return;
+    }
     setLoading(true);
     try {
       if (Platform.OS === 'web') {
@@ -149,31 +161,20 @@ export function ChamberFinder({ route }: Props) {
     Linking.openURL(url);
   };
 
-  if (!isConnected) {
-    return (
-      <View style={styles.container}>
-        <View style={styles.offlineContainer}>
-          <Ionicons name="cloud-offline" size={48} color={Colors.midGrey} />
-          <Text style={styles.offlineTitle}>Chamber finder requires an internet connection</Text>
-          <Text style={styles.offlineText}>In an emergency:</Text>
-          <CallButton
-            label="Call 999 — Ask for Coastguard"
-            phoneNumber="999"
-            color={Colors.emergencyRed}
-          />
-          <CallButton
-            label="BHA Helpline: 07831 151 523"
-            phoneNumber="+447831151523"
-            color={Colors.primaryNavy}
-          />
-        </View>
-      </View>
-    );
-  }
-
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.content}>
+        {/* Offline notice — postcode search still works from built-in data */}
+        {!isConnected && (
+          <View style={styles.offlineNotice}>
+            <Ionicons name="cloud-offline" size={20} color={Colors.amber} />
+            <Text style={styles.offlineNoticeText}>
+              You're offline. Postcode search still works using built-in
+              chamber data, but "Use my location" is unavailable.
+            </Text>
+          </View>
+        )}
+
         {/* Search input */}
         <View style={styles.searchSection}>
           <TextInput
@@ -454,23 +455,21 @@ const styles = StyleSheet.create({
   textDisabled: {
     color: Colors.disabledGrey,
   },
-  offlineContainer: {
+  offlineNotice: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: Spacing.sm,
+    backgroundColor: '#FFF3E0',
+    borderRadius: BorderRadius.md,
+    padding: Spacing.md,
+    marginBottom: Spacing.md,
+    borderLeftWidth: 4,
+    borderLeftColor: Colors.amber,
+  },
+  offlineNoticeText: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: Spacing.xl,
-    gap: Spacing.md,
-  },
-  offlineTitle: {
-    fontSize: FontSizes.lg,
-    fontWeight: '700',
+    fontSize: FontSizes.sm,
     color: Colors.darkText,
-    textAlign: 'center',
-  },
-  offlineText: {
-    fontSize: FontSizes.md,
-    color: Colors.midGrey,
-    marginTop: Spacing.md,
-    marginBottom: Spacing.sm,
+    lineHeight: 20,
   },
 });
